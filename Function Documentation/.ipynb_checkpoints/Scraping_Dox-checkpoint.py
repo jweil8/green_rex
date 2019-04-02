@@ -29,3 +29,12 @@ def get_reviews(list):
         r = requests.get(i)
         htmls.append(r.content)
         table_check(i)
+        
+def parse_docs(dict):
+    """Parse the HTML docs that we have stored in a dictionary, return as a list. """
+    strain_text= []
+    for key, values in dict.items():
+        soup = BeautifulSoup(values, 'html.parser')
+        strain_text.append(soup.select("p.strain-review__text"))
+            #stars = soup.select("div.star_rating")
+    return strain_text
