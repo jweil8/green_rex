@@ -62,8 +62,6 @@ def star_int_conv(l):
                 flat_stars.append(item)
     return flat_stars
 
-
-
 def list_o_strains(i):
     # Works on the main explore page, but doesnt when i use filter...
     #need to figure out how to get the filters to work and still scrapy.
