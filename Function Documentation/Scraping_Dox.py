@@ -72,3 +72,14 @@ def list_o_strains(i):
     for s in strains:
         LOS.append(s.attrs['href'])
     return LOS
+
+def grab_users(i):
+    """Gets al of the users that reviews the strain"""
+    LU = []
+    r = requests.get(i)
+    soupu = BeautifulSoup(r.content, 'html.parser')
+    users = soupu.find_all('div', {'class': 'strain-review__title'})
+    for u in users:
+        temp = u.find('h2')
+        LU.append(temp.text)
+    return LU
