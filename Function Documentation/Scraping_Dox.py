@@ -38,3 +38,14 @@ def parse_docs(dict):
         strain_text.append(soup.select("p.strain-review__text"))
             #stars = soup.select("div.star_rating")
     return strain_text
+
+
+def get_stars_list(d):
+    """"""
+    stars = []
+    for key, values in d.items():
+        soup = BeautifulSoup(values, 'html.parser')
+        tags = soup.select("div.div.stars")
+        for t in tags:
+            stars.append(t.attrs['style'])
+    return stars
