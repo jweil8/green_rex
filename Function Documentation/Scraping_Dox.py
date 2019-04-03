@@ -41,7 +41,7 @@ def parse_docs(dict):
 
 
 def get_stars_list(d):
-    """"""
+    """grabs the star ratings for eac review"""
     stars = []
     for key, values in d.items():
         soup = BeautifulSoup(values, 'html.parser')
@@ -49,3 +49,28 @@ def get_stars_list(d):
         for t in tags:
             stars.append(t.attrs['style'])
     return stars
+
+def star_int_conv(l):
+    """get star width str, strip and turn into an integer value 1-5 to represent the number of stars"""
+    flat_stars= []
+    star_num = []
+    for s in l:
+        star = int((s[6:].split(';')[0]).strip('px'))
+        star_num.append((star/22))
+        for star in star_num:
+            for item in sublist:
+                flat_stars.append(item)
+    return flat_stars
+
+
+
+def list_o_strains(i):
+    # Works on the main explore page, but doesnt when i use filter...
+    #need to figure out how to get the filters to work and still scrapy.
+    LOS = []
+    r = requests.get(i)
+    soup2 = BeautifulSoup(r.content, 'html.parser')
+    strains = soup2.find_all('a', class_="ga_Explore_Strain_Tile")
+    for s in strains:
+        LOS.append(s.attrs['href'])
+    return LOS
