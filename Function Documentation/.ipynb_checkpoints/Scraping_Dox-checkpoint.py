@@ -74,12 +74,28 @@ def list_o_strains(i):
     return LOS
 
 def grab_users(i):
-    """Gets al of the users that reviews the strain"""
+"""Gets all of the users that reviews the strain"""
     LU = []
     r = requests.get(i)
     soupu = BeautifulSoup(r.content, 'html.parser')
     users = soupu.find_all('div', {'class': 'strain-review__title'})
     for u in users:
         temp = u.find('h2')
+        LU.append(temp.text)
+    return LU
+
+
+def grab_users_from_list(l):
+"""Pass in a list of URLS to scrape and it returns all the userswhove reviewd the strain"""
+    LU = []
+    htmls = []
+    for i in l:
+        r = requests.get(i)
+        html = (r.content)
+        htmls.append(html)
+        soupu = BeautifulSoup(r.content, 'html.parser')
+        users = soupu.find_all('div', {'class': 'strain-review__title'})
+        for u in users:
+            temp = u.find('h2')
         LU.append(temp.text)
     return LU
