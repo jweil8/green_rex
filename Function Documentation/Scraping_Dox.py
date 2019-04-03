@@ -1,6 +1,6 @@
 # Create list of URL's corresponding with strain reviews
 def get_url(x,y):
-    """X= number of urls to grab, y= strain name or other thing we are scraping 
+"""X= number of urls to grab, y= strain name or other thing we are scraping 
     Pull in urls from a 'Load MOre' button and the like. Create identical URL's with differing numbers"""
     urls = []
     url = 1 
@@ -11,7 +11,7 @@ def get_url(x,y):
 
 # See if table contains URL already, if not add it in.
 def table_check(url):
-    """This checks to see if a url is already in my database of reviews"""
+"""This checks to see if a url is already in my database of reviews"""
     for i in list:
         if i in docs.find_one({'url':url}):
             None
@@ -22,7 +22,7 @@ def table_check(url):
 
 # Insert review into mongo db table
 def get_reviews(list):
-    """Pass in a list of URL's and return them in a mongo db table as a dicitonary with 
+"""Pass in a list of URL's and return them in a mongo db table as a dicitonary with 
     keys{'url', 'html'} and their corresponding values"""
     htmls = []
     for i in l:
@@ -31,7 +31,7 @@ def get_reviews(list):
         table_check(i)
         
 def parse_docs(dict):
-    """Parse the HTML docs that we have stored in a dictionary, return as a list. """
+"""Parse the HTML docs that we have stored in a dictionary, return as a list. """
     strain_text= []
     for key, values in dict.items():
         soup = BeautifulSoup(values, 'html.parser')
@@ -63,8 +63,8 @@ def star_int_conv(l):
     return flat_stars
 
 def list_o_strains(i):
-    # Works on the main explore page, but doesnt when i use filter...
-    #need to figure out how to get the filters to work and still scrapy.
+"""Works on the main explore page, but doesnt when i use filter...
+need to figure out how to get the filters to work and still scrapy."""
     LOS = []
     r = requests.get(i)
     soup2 = BeautifulSoup(r.content, 'html.parser')
