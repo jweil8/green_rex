@@ -70,7 +70,7 @@ need to figure out how to get the filters to work and still scrapy."""
     soup2 = BeautifulSoup(r.content, 'html.parser')
     strains = soup2.find_all('a', class_="ga_Explore_Strain_Tile")
     for s in strains:
-        LOS.append(s.attrs['href'])
+        LOS.append(str(s.attrs['href'])[1:])
     return LOS
 
 def grab_users(i):
