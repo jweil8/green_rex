@@ -30,3 +30,17 @@ Best parameters set:
 	vect__max_df: 1.0
 	vect__max_features: None
 	vect__ngram_range: (1, 2)
+    
+    
+Second time = 
+
+Best score: 0.539
+Best parameters set:
+	clf__alpha: 1e-06
+	clf__max_iter: 80
+	clf__penalty: 'elasticnet'
+	tfidf__norm: 'l1'
+	tfidf__use_idf: True
+	vect__max_df: 1.0
+	vect__max_features: None
+	vect__ngram_range: (1, 2)
