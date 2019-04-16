@@ -7,11 +7,23 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
+    html.H1(children='Welcome to Green-Rex'),
 
     html.Div(children='''
         Dash: A web application framework for Python.
     '''),
+
+    html.Label('Text Input'),
+        dcc.Input(value='MTL', type='text'),
+
+        html.Label('Slider'),
+        dcc.Slider(
+            min=0,
+            max=9,
+            marks={i: 'Label {}'.format(i) if i == 1 else str(i) for i in range(1, 6)},
+            value=5,
+        ),
+    ], style={'columnCount': 2})
 
     dcc.Graph(
         id='example-graph',
