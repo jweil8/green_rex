@@ -81,7 +81,7 @@ def input_to_vec(text_box,strain_slider):
             'data': [go.Bar(
                 x=score,
                 y=nu_names,
-                #text=dff[dff['Indicator Name'] == yaxis_column_name]['Country Name'],
+                #text='Recomendation Strength = {:.2%}'.format(score) ,
                 orientation = 'h'
             )]
         }
