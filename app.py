@@ -28,29 +28,26 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div([
-    dcc.Input(
-    id='text-box',
-    placeholder='How ya wanna feel...',
-    type='text',
-    value=''),
-    dcc.Graph(id='results-slider-graph'),
-    dcc.Slider(
-        id='strain-slider',
-        min=2,
-        max=10,
-        step=1, 
-        marks={2: '2',
-        3: '3',
-        4: '4',
-        5: '5',
-        6: '6', 
-        7: '7', 
-        8: '8', 
-        9: '9', 
-        10:'10'
-        }
-    )
-])
+    html.H1("Green-Rex: We Recommend It, You Smoke It!", style={'color' :'#008000', "textAlign": "center"}),
+    
+    html.Div([
+        html.H2("Your words lead to your experience!"),
+        dcc.Input(
+            id='text-box',
+            placeholder='What would you like to feel today?',
+            type='text',
+            value='',
+            size=30),
+        html.H2("Don't forget to set the number of strains to recommend!"), 
+        dcc.Slider(
+            id='strain-slider',
+            min=2,
+            max=10,
+            step=1, 
+            marks={2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10:'10'})
+        ], className="vertical", style={'color' :'#008000', "textAlign": "center", "padding": 50, "width": "100%", "margin-left": "auto", "margin-right": "auto"}),
+    dcc.Graph(id='results-slider-graph')
+], className="container")
 
 @app.callback(
     Output('results-slider-graph', 'figure'),
@@ -74,48 +71,25 @@ def input_to_vec(text_box,strain_slider):
     for i in names:
         new_i = re.sub('[-]', ' ', i)
         nu_names.append(new_i)
-    for i in score:
-        print('Recomendation Strength = {:.2%}'.format(i))
+    #for i in score:
+        #print('Recomendation Strength = {:.2%}'.format(i))
 
     return {
             'data': [go.Bar(
                 x=score,
                 y=nu_names,
-                #text='Recomendation Strength = {:.2%}'.format(score) ,
-                orientation = 'h'
-            )]
+                orientation = 'h', 
+                marker = dict(
+                    color = '#008000')
+            )], 
+
+            'layout':[go.Layout(
+                margin=dict(
+                        l=120,
+                        r=10,
+                        t=140,
+                        b=80))]
         }
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-
-    
-    
-    
-
-        
-"""
-def input_to_vec(x,y):
-    vbow = tdict.doc2bow(x.lower().split())
-    lsi = model[vbow]
-    simimlarity = index[lsi]
-    sims_sort = sorted(enumerate(simimlarity), key=lambda item: -item[1])
-    top = sims_sort[:y]
-    top_l =[]
-    for i in top:
-        top_l.append((strain_lookup[i[0]],i[1]))
-    names = []
-    score = []
-    for i in top_l:
-        names.append((i[0][7:]))
-        score.append(i[1])
-    nu_names = []
-    for i in names:
-        new_i = re.sub('[-]', ' ', i)
-        nu_names.append(new_i)
-    for i in score:
-        print('Recomendation Strength = {:.2%}'.format(i))
-    plt.figure(1, figsize=(50, 10))
-    plt.subplot(131)
-    plt.bar(nu_names, score, color='g')
-    plt.show()"""
