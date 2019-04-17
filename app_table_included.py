@@ -85,7 +85,7 @@ def input_to_vec(text_box,strain_slider):
 
             'layout':[go.Layout(
                 margin=dict(
-                        l=10,
+                        l=120,
                         r=10,
                         t=140,
                         b=80))]
