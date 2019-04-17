@@ -44,7 +44,7 @@ app.layout = html.Div([
     html.H1("Green-Rex: We Recommend It, You Smoke It!", style={'color' :'#008000', "textAlign": "center"}),
     
     html.Div([
-        html.H2("Your words lead to your experience!"),
+        html.H2("Your words, your experience!"),
         dcc.Input(
             id='text-box',
             placeholder='What would you like to feel today?',
