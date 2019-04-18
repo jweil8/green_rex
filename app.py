@@ -69,7 +69,8 @@ app.layout = html.Div([
             dcc.Markdown(d("""
                 **Click Data**
 
-                Click on points in the graph.
+                Click on a bar to find out more!
+                
             """)),
             html.Pre(id='click-data', style=styles['pre']),
         ], className='row')
