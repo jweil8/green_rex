@@ -47,7 +47,7 @@ app.layout = html.Div([
         html.H2("Your words, your experience!"),
         dcc.Input(
             id='text-box',
-            placeholder='What would you like to feel today?',
+            placeholder='How High?',
             type='text',
             value='',
             size=30),
@@ -143,7 +143,7 @@ def input_to_vec(text_box,strain_slider):
         xaxis = go.layout.XAxis(
         title='Score',
         automargin=True,
-        hoverformat = '.2f',
+        hoverformat = '.3p',
         titlefont=dict(size=30
         )),
                 
