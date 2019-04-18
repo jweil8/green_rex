@@ -83,8 +83,8 @@ def input_to_vec(text_box,strain_slider):
     vbow = td.doc2bow(text_box.lower().split())
     lsi = m[vbow]
     simimlarity = s_index[lsi]
-    sims_sort = sorted(enumerate(simimlarity), key=lambda item: -item[1])
-    top = sims_sort[:strain_slider]
+    sims_sort = sorted(enumerate(simimlarity), key=lambda item: -item[1], reverse=True)
+    top = sims_sort[47-strain_slider:]
     
     top_l =[]
     desc = []
@@ -102,19 +102,25 @@ def input_to_vec(text_box,strain_slider):
         negs.append(descripion_dict[i[0]][1]['negatives'])
         meds.append(descripion_dict[i[0]][1]['medical_uses'])
         flavs.append(descripion_dict[i[0]][1]['flavor'])  
-    
+        
+        
+  
     names = []
     score = []
     for i in top_l:
         names.append((i[0][7:]))
         score.append(i[1])
         
+    
     nu_names = []
     for i in names:
         new_i = re.sub('[-]', ' ', i)
         nu_names.append(new_i)
+        
     #for i in score:
         #print('Recomendation Strength = {:.2%}'.format(i))
+        
+   
 
     return {
             'data': [go.Bar(
