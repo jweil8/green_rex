@@ -65,26 +65,28 @@ app.layout = html.Div([
     html.Div([
             dcc.Graph(id='results-slider-graph', style={'color' :'#008000', "textAlign": "center", "width": "100%", "margin-left": "auto", "margin-right": "auto"}),
             
+            html.Div([
             dcc.Markdown(d("""
-                **Hover Data**
+                **Click Data**
 
-                Mouse over values in the graph.
+                Click on points in the graph.
             """)),
-            html.Pre(id='hover-data', style=styles['pre'])
-        ], className='row',)
-], className="container")
+            html.Pre(id='click-data', style=styles['pre']),
+        ], className='row')
+], className="container")])
     
 
 @app.callback(
     Output('results-slider-graph', 'figure'),
     [Input('text-box', 'value'),
      Input('strain-slider', 'value')])
+    
 def input_to_vec(text_box,strain_slider):
     vbow = td.doc2bow(text_box.lower().split())
     lsi = m[vbow]
     simimlarity = s_index[lsi]
     sims_sort = sorted(enumerate(simimlarity), key=lambda item: -item[1], reverse=True)
-    top = sims_sort[47-strain_slider:]
+    top = sims_sort[(47 - strain_slider):]
     
     top_l =[]
     desc = []
@@ -135,26 +137,26 @@ def input_to_vec(text_box,strain_slider):
         
             'layout' : go.Layout(
         title = "Check your Results",
-        titlefont = dict(
-            size = 20
-        ),
+        titlefont = dict(size = 30),
                 
-        xaxis = dict(
-            zeroline = False,
-            hoverformat = '.2f'
-        ),
-        yaxis = dict(
-            hoverformat = '.2f'
-        )
-    )
-
-    }
+        xaxis = go.layout.XAxis(
+        title='Score',
+        automargin=True,
+        hoverformat = '.2f',
+        titlefont=dict(size=30
+        )),
+                
+        yaxis = go.layout.YAxis(
+        title='Strains',
+        automargin=True,
+        titlefont=dict(size=30)
+        ))}
 
 @app.callback(
-    Output('hover-data', 'children'),
-    [Input('results-slider-graph', 'hoverData')])
-def display_hover_data(hoverData):
-    return json.dumps(hoverData, indent=2)
+    Output('click-data', 'children'),
+    [Input('results-slider-graph', 'clickData')])
+def display_click_data(clickData):
+    return json.dumps(clickData, indent=2)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
