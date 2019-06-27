@@ -24,8 +24,8 @@ from gensim.models import LsiModel
 td = corpora.Dictionary.load('scratch_work/NLPScratch/brand_new_strains.dict')
 m = LsiModel.load('scratch_work/NLPScratch/_fit_LSI_Model.model')
 s_index = MatrixSimilarity.load('scratch_work/NLPScratch/strain_sim.index')
-descripts = open("descriptions.pkl","rb")
-strain_lookup = open("strain_lookup.pkl","rb")
+descripts = open("models/descriptions.pkl","rb")
+strain_lookup = open("models/strain_lookup.pkl","rb")
 descripion_dict= pickle.load(descripts)
 lookup = pickle.load(strain_lookup)
 
