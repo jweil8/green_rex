@@ -7,9 +7,9 @@
   
   ### Execution
   
-    I created a database of the 50 top strains on Leafly based on user reviews. For each strain thea database entry contains all of the user reviews associated with the strain, the flavors, positive and negative effects, and the leafly description of the strain itself as well. I used these descriptions to create an index that i can query when making recommendations. The revies, tastes and effects are used when calculating the similarity scores while the description is returned with the results. 
+   I created a database of the 50 top strains on Leafly based on user reviews. For each strain thea database entry contains all of the user reviews associated with the strain, the flavors, positive and negative effects, and the leafly description of the strain itself as well. I used these descriptions to create an index that i can query when making recommendations. The revies, tastes and effects are used when calculating the similarity scores while the description is returned with the results. 
     
   ### App 
   
-    Currently the recoomender works as a standalon app that you can run in your terminal. Once you are in this repo run  app.py to see the Dash dashboard where you can query for strains. 
+   Currently the recoomender works as a standalon app that you can run in your terminal. Once you are in this repo run  app.py to see the Dash dashboard where you can query for strains. 
    
