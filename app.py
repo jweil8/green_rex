@@ -32,13 +32,6 @@ lookup = pickle.load(strain_lookup)
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-
-styles = {
-    'pre': {
-        'border': 'thin lightgrey solid',
-        'overflowX': 'scroll'
-    }
-}    
     
 app.layout = html.Div([
     html.H1("Green-Rex: We Recommend It, You Smoke It!", style={'color' :'#008000', "textAlign": "center"}),
