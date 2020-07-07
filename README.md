@@ -11,5 +11,5 @@
     
   ### App 
   
-   Currently the recoomender works as a standalon app that you can run in your terminal. Once you are in this repo run  app.py to see the Dash dashboard where you can query for strains. 
+   Currently the recoomender works as a stand alone app that you can run in your terminal. Once you are in this repo run  app.py to see the Dash dashboard where you can query for strains. 
    
